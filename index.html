@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificador de Bandeira de Cartão</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Identificador de Bandeira de Cartão</h1>
+        
+        <div class="card-display">
+            <div class="card-chip"></div>
+            <div class="card-number">•••• •••• •••• ••••</div>
+            <div class="card-holder">NOME DO TITULAR</div>
+            <div class="card-brand"></div>
+        </div>
+        
+        <form class="card-form" id="cardForm">
+            <div class="form-group">
+                <label for="cardNumber">Número do Cartão:</label>
+                <input 
+                    type="text" 
+                    id="cardNumber" 
+                    placeholder="Digite o número do cartão (apenas números)" 
+                    autocomplete="off"
+                    maxlength="19"
+                >
+                <div class="error" id="cardError">Por favor, insira um número de cartão válido.</div>
+            </div>
+            <button type="submit" class="btn" id="identifyBtn">Identificar Bandeira</button>
+        </form>
+        
+        <div class="result" id="resultContainer">
+            <div class="card-type" id="cardType">Visa</div>
+            <div class="card-message" id="cardMessage">Número de cartão potencialmente válido.</div>
+            
+            <div class="card-info">
+                <h3>Informações do Cartão</h3>
+                <p id="cardLength">Comprimento: 16 dígitos</p>
+                <p id="cardPrefix">Prefixo: 4</p>
+                <p id="isValid">Validação Luhn: Aprovado</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        Desenvolvido para o desafio da DIO - &copy; <span id="currentYear"></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
