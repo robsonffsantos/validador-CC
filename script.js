@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const cardPrefix = document.getElementById('cardPrefix');
     const isValid = document.getElementById('isValid');
     const cardNumberDisplay = document.querySelector('.card-number');
-    const cardBrand = document.querySelector('.card-brand');
+    const cardBrandIcon = document.getElementById('cardBrandIcon');
+    const resultCardIcon = document.getElementById('resultCardIcon');
     const cardError = document.getElementById('cardError');
     
-
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
     cardNumberInput.addEventListener('input', function(e) {
@@ -85,17 +85,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return null;
         }
         
-        // Regras para identificar bandeiras de cartões
         let brand = 'Desconhecido';
         let prefix = '';
         let isLuhnCheckValid = isLuhnValid(cardNumber);
         
-        // Visa
         if (/^4/.test(cardNumber) && [13, 16, 19].includes(cardNumber.length)) {
             brand = 'Visa';
             prefix = '4';
         }
-        // Mastercard
+
         else if (((/^5[1-5]/.test(cardNumber)) || 
                 (/^(222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[0-1]\d|2720)/.test(cardNumber))) && 
                 cardNumber.length === 16) {
@@ -105,12 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 prefix = cardNumber.substring(0, 4);
             }
         }
-        // American Express
+
         else if (/^3[47]/.test(cardNumber) && cardNumber.length === 15) {
             brand = 'American Express';
             prefix = cardNumber.substring(0, 2);
         }
-        // Discover
+
         else if ((/^6011/.test(cardNumber) || 
                 /^65/.test(cardNumber) || 
                 /^64[4-9]/.test(cardNumber) ||
@@ -127,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 prefix = cardNumber.substring(0, 6);
             }
         }
-        // Diners Club
+
         else if ((/^3(0[0-5]|[68-9])/.test(cardNumber)) && 
                 (cardNumber.length >= 14 && cardNumber.length <= 19)) {
             brand = 'Diners Club';
@@ -139,13 +137,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-        // JCB
+
         else if (/^35(2[8-9]|[3-8]\d)/.test(cardNumber) && 
                 (cardNumber.length >= 16 && cardNumber.length <= 19)) {
             brand = 'JCB';
             prefix = cardNumber.substring(0, 4);
         }
-        // Elo (Brasil)
+
         else if ((/^(401178|401179|438935|457631|457632|431274|451416|457393|504175)/.test(cardNumber) ||
                 /^(506699|5067[0-7]\d|506798)/.test(cardNumber) ||
                 /^(509\d{3})/.test(cardNumber) ||
@@ -169,14 +167,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 prefix = cardNumber.substring(0, 6);
             }
         }
-        // Hipercard (Brasil)
         else if (/^(606282)/.test(cardNumber) && cardNumber.length === 16) {
             brand = 'Hipercard';
             prefix = '606282';
         }
-        
+
         cardType.textContent = brand;
-        cardBrand.textContent = brand;
+        updateCardIcons(brand.toLowerCase());
         cardLength.textContent = `Comprimento: ${cardNumber.length} dígitos`;
         cardPrefix.textContent = `Prefixo: ${prefix}`;
         
@@ -219,5 +216,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         return sum % 10 === 0;
+    }
+    
+    function updateCardIcons(brand) {
+        let iconName;
+        
+        switch(brand) {
+            case 'visa':
+                iconName = 'visa.png';
+                break;
+            case 'mastercard':
+                iconName = 'mastercard.png';
+                break;
+            case 'american express':
+                iconName = 'amex.png';
+                break;
+            case 'discover':
+                iconName = 'discover.png';
+                break;
+            case 'diners club':
+                iconName = 'diners.png';
+                break;
+            case 'jcb':
+                iconName = 'jcb.png';
+                break;
+            case 'elo':
+                iconName = 'elo.png';
+                break;
+            case 'hipercard':
+                iconName = 'hipercard.png';
+                break;
+            default:
+                iconName = 'placeholder.png';
+        }
+        
+        cardBrandIcon.src = `assets/${iconName}`;
+        cardBrandIcon.alt = brand;
+        
+        resultCardIcon.src = `assets/${iconName}`;
+        resultCardIcon.alt = brand;
     }
 });
