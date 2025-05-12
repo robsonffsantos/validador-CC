@@ -11,10 +11,14 @@
         <h1>Identificador de Bandeira de Cartão</h1>
         
         <div class="card-display">
-            <div class="card-chip"></div>
+            <div class="card-chip">
+                <img src="assets/card-chip.png" alt="Chip do Cartão" class="card-chip-icon">
+            </div>
             <div class="card-number">•••• •••• •••• ••••</div>
             <div class="card-holder">NOME DO TITULAR</div>
-            <div class="card-brand"></div>
+            <div class="card-brand">
+                <img id="cardBrandIcon" src="assets/placeholder.png" alt="Bandeira do Cartão" class="card-brand-icon">
+            </div>
         </div>
         
         <form class="card-form" id="cardForm">
@@ -33,7 +37,10 @@
         </form>
         
         <div class="result" id="resultContainer">
-            <div class="card-type" id="cardType">Visa</div>
+            <div class="card-type-container">
+                <img id="resultCardIcon" src="assets/placeholder.png" alt="Bandeira do Cartão" class="card-icon">
+                <div class="card-type" id="cardType">Visa</div>
+            </div>
             <div class="card-message" id="cardMessage">Número de cartão potencialmente válido.</div>
             
             <div class="card-info">
