@@ -1,6 +1,7 @@
-# Identificador de Bandeira de Cartão 💳
-
+# Identificador de Bandeira de Cartão
 Este projeto é uma aplicação web que identifica a bandeira de cartões de crédito com base no número do cartão.
+
+<img src="https://github.com/user-attachments/assets/38c6e746-7a61-4358-9168-f1146a66be75" width="400" alt="Identificador de Bandeira de Cartão">
 
 ## 📋 Funcionalidades
 
